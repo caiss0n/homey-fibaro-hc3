@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fibaro Home Center 3 Settings</title>
+  <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #0091D8;
+    }
+
+    button {
+      background-color: #0091D8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #007ab5;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .status.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .info {
+      background-color: #e7f3ff;
+      border: 1px solid #b3d9ff;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #004085;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+
+    .info h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .info ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    .info li {
+      margin-bottom: 8px;
+    }
+
+    .info code {
+      background-color: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    input[type="number"], input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    small {
+      display: block;
+      color: #666;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    #hc3-info {
+      display: none;
+      background-color: #f0f9ee;
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #155724;
+    }
+
+    #hc3-info h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    #hc3-info table {
+      border-collapse: collapse;
+    }
+
+    #hc3-info td {
+      padding: 2px 10px 2px 0;
+      vertical-align: top;
+    }
+
+    #hc3-info td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fibaro Home Center 3 Settings</h1>
+
+  <div class="info">
+    <h3>Setup Instructions</h3>
+    <ol>
+      <li>Enter the local IP address of your HC3 (e.g., <code>192.168.1.100</code>). You can find it in the HC3 web interface under <strong>Settings → Network</strong>.</li>
+      <li>Enter a HC3 username and password. The user needs permission to control devices and read states.</li>
+      <li>Click <strong>Test Connection</strong> to verify, then <strong>Save Settings</strong>.</li>
+    </ol>
+    <p><strong>Note:</strong> The connection uses plain HTTP on your local network. Use a dedicated HC3 user with only the permissions this integration needs.</p>
+  </div>
+
+  <div id="hc3-info">
+    <h3>Connected to HC3</h3>
+    <table>
+      <tr><td>Name</td><td id="info-hcname">-</td></tr>
+      <tr><td>Platform</td><td id="info-platform">-</td></tr>
+      <tr><td>Serial number</td><td id="info-serial">-</td></tr>
+      <tr><td>Firmware</td><td id="info-firmware">-</td></tr>
+      <tr><td>Z-Wave engine</td><td id="info-zwave">-</td></tr>
+      <tr><td>MAC</td><td id="info-mac">-</td></tr>
+      <tr><td>Devices</td><td id="info-devices">-</td></tr>
+    </table>
+  </div>
+
+  <div class="field">
+    <label for="hc3_ip">HC3 IP Address</label>
+    <input type="text" id="hc3_ip" placeholder="192.168.1.100">
+  </div>
+
+  <div class="field">
+    <label for="hc3_username">Username</label>
+    <input type="text" id="hc3_username" placeholder="admin" autocomplete="off">
+  </div>
+
+  <div class="field">
+    <label for="hc3_password">Password</label>
+    <input type="password" id="hc3_password" placeholder="••••••••">
+  </div>
+
+  <div class="field">
+    <label>
+      <input type="checkbox" id="enable_logging" />
+      Enable Debug Logging
+    </label>
+    <small>Show detailed logs below. Disable after setup is complete to reduce clutter.</small>
+  </div>
+
+  <p style="font-size: 13px; color: #666;">Device state updates are pushed by the HC3 in near real-time (long-polling) — no refresh interval configuration is needed.</p>
+
+  <button id="test-button">Test Connection</button>
+  <button id="save-button">Save Settings</button>
+
+  <div id="status" class="status"></div>
+
+  <div class="info" id="logs-section" style="margin-top: 20px;">
+    <h3>App Logs (Live)</h3>
+    <button id="clear-logs-button">Clear Logs</button>
+    <pre id="app-logs" style="background: #000; color: #0f0; padding: 10px; font-family: monospace; font-size: 12px; max-height: 400px; overflow-y: auto; margin-top: 10px; user-select: text; cursor: text; white-space: pre-wrap; word-wrap: break-word;">Waiting for logs...</pre>
+  </div>
+
+  <script>
+    function onHomeyReady(Homey) {
+      // Load current settings
+      Homey.get('hc3_ip', function(err, value) {
+        if (!err && value) {
+          document.getElementById('hc3_ip').value = value;
+        }
+      });
+
+      Homey.get('hc3_username', function(err, value) {
+        if (!err && value) {
+          document.getElementById('hc3_username').value = value;
+        }
+      });
+
+      Homey.get('hc3_password', function(err, value) {
+        if (!err && value) {
+          document.getElementById('hc3_password').value = value;
+        }
+      });
+
+      Homey.get('enable_logging', function(err, value) {
+        const enabled = (err || value === undefined) ? true : value;
+        document.getElementById('enable_logging').checked = enabled;
+        updateLoggingVisibility(enabled);
+      });
+
+      document.getElementById('enable_logging').addEventListener('change', function() {
+        const enabled = this.checked;
+        Homey.set('enable_logging', enabled);
+        updateLoggingVisibility(enabled);
+      });
+
+      function updateLoggingVisibility(enabled) {
+        document.getElementById('logs-section').style.display = enabled ? 'block' : 'none';
+      }
+
+      // Refresh log viewer every 3 seconds, auto-scroll when pinned to bottom
+      function refreshLogs() {
+        Homey.get('app_logs', function(err, value) {
+          if (!err && value) {
+            const logsEl = document.getElementById('app-logs');
+            const atBottom = logsEl.scrollHeight - logsEl.scrollTop - logsEl.clientHeight < 30;
+            logsEl.textContent = value;
+            if (atBottom) {
+              logsEl.scrollTop = logsEl.scrollHeight;
+            }
+          }
+        });
+      }
+      refreshLogs();
+      setInterval(refreshLogs, 3000);
+
+      document.getElementById('clear-logs-button').addEventListener('click', function() {
+        Homey.set('app_logs', '');
+        document.getElementById('app-logs').textContent = 'Logs cleared.';
+      });
+
+      function readFields() {
+        return {
+          ip: document.getElementById('hc3_ip').value.trim(),
+          username: document.getElementById('hc3_username').value.trim(),
+          password: document.getElementById('hc3_password').value,
+        };
+      }
+
+      function validateFields(fields) {
+        if (!fields.ip || !fields.username || !fields.password) {
+          showStatus('Please fill in IP address, username and password', 'error');
+          return false;
+        }
+        return true;
+      }
+
+      function saveConnectionFields(fields, done) {
+        Homey.set('hc3_ip', fields.ip, function(err) {
+          if (err) return done(err);
+          Homey.set('hc3_username', fields.username, function(err2) {
+            if (err2) return done(err2);
+            Homey.set('hc3_password', fields.password, done);
+          });
+        });
+      }
+
+      // Test connection button
+      document.getElementById('test-button').addEventListener('click', function() {
+        const fields = readFields();
+        if (!validateFields(fields)) return;
+
+        document.getElementById('hc3-info').style.display = 'none';
+        showStatus('Testing connection...', 'success');
+
+        // Save fields first so the app tests with the values on screen
+        saveConnectionFields(fields, function(saveErr) {
+          if (saveErr) {
+            showStatus('Could not save settings before testing: ' + saveErr.message, 'error');
+            return;
+          }
+
+          Homey.api('GET', '/test-connection', function(err, result) {
+            if (err) {
+              showStatus('Connection failed: ' + err.message, 'error');
+              return;
+            }
+            if (result && result.success) {
+              showStatus('Connection successful!', 'success');
+              if (result.info) {
+                document.getElementById('info-hcname').textContent = result.info.hcName || '-';
+                document.getElementById('info-platform').textContent = result.info.platform || '-';
+                document.getElementById('info-serial').textContent = result.info.serialNumber || '-';
+                document.getElementById('info-firmware').textContent = result.info.firmwareVersion || '-';
+                document.getElementById('info-zwave').textContent = result.info.zwaveVersion || '-';
+                document.getElementById('info-mac').textContent = result.info.mac || '-';
+                document.getElementById('info-devices').textContent =
+                  result.info.deviceCount !== undefined ? result.info.deviceCount : '-';
+                document.getElementById('hc3-info').style.display = 'block';
+              }
+            } else {
+              showStatus('Connection failed: ' + (result && result.error ? result.error : 'unknown error'), 'error');
+            }
+          });
+        });
+      });
+
+      // Save button
+      document.getElementById('save-button').addEventListener('click', function() {
+        const fields = readFields();
+        if (!validateFields(fields)) return;
+
+        saveConnectionFields(fields, function(err) {
+          if (err) {
+            showStatus('Error saving settings: ' + err.message, 'error');
+            return;
+          }
+          showStatus('Settings saved successfully!', 'success');
+        });
+      });
+
+      function showStatus(message, type) {
+        const statusDiv = document.getElementById('status');
+        statusDiv.textContent = message;
+        statusDiv.className = 'status ' + type;
+        statusDiv.style.display = 'block';
+      }
+
+      Homey.ready();
+    }
+  </script>
+</body>
+</html>

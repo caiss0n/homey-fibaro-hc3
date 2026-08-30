@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    "local"
+  ],
+  "id": "light-sensor",
+  "name": {
+    "en": "Light Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_luminance"
+  ],
+  "images": {
+    "small": "/drivers/light-sensor/assets/images/small.png",
+    "large": "/drivers/light-sensor/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "connectivity": [
+    "lan"
+  ]
+}

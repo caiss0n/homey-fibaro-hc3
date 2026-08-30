@@ -1,0 +1,18 @@
+{
+  "name": "org.saiful.fibarohc3",
+  "version": "1.0.0",
+  "main": "app.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "test": "node --test test/*.test.js",
+    "test:live": "node scripts/live-check.js"
+  },
+  "devDependencies": {
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
+    "eslint": "^7.32.0",
+    "eslint-config-athom": "^3.1.5"
+  }
+}

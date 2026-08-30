@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    "local"
+  ],
+  "id": "contact-sensor",
+  "name": {
+    "en": "Contact Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_contact"
+  ],
+  "images": {
+    "small": "/drivers/contact-sensor/assets/images/small.png",
+    "large": "/drivers/contact-sensor/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "connectivity": [
+    "lan"
+  ]
+}

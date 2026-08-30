@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    "local"
+  ],
+  "id": "garage-door",
+  "name": {
+    "en": "Garage Door"
+  },
+  "class": "garagedoor",
+  "capabilities": [
+    "garagedoor_closed"
+  ],
+  "images": {
+    "small": "/drivers/garage-door/assets/images/small.png",
+    "large": "/drivers/garage-door/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "connectivity": [
+    "lan"
+  ]
+}

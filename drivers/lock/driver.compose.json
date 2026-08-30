@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    "local"
+  ],
+  "id": "lock",
+  "name": {
+    "en": "Lock"
+  },
+  "class": "lock",
+  "capabilities": [
+    "locked"
+  ],
+  "images": {
+    "small": "/drivers/lock/assets/images/small.png",
+    "large": "/drivers/lock/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "connectivity": [
+    "lan"
+  ]
+}

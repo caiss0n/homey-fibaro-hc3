@@ -1,0 +1,35 @@
+[
+  {
+    "id": "deviceClass",
+    "type": "dropdown",
+    "label": {
+      "en": "Device type"
+    },
+    "hint": {
+      "en": "Choose what this switch controls. This changes how the device appears in Homey (icon and device type); the on/off control stays the same."
+    },
+    "value": "socket",
+    "values": [
+      { "id": "socket", "label": { "en": "Socket / Wall Plug" } },
+      { "id": "light", "label": { "en": "Light" } },
+      { "id": "relay", "label": { "en": "Relay" } },
+      { "id": "fan", "label": { "en": "Fan" } },
+      { "id": "heater", "label": { "en": "Heater" } },
+      { "id": "kettle", "label": { "en": "Kettle" } },
+      { "id": "coffeemachine", "label": { "en": "Coffee Machine" } },
+      { "id": "airpurifier", "label": { "en": "Air Purifier" } },
+      { "id": "humidifier", "label": { "en": "Humidifier" } },
+      { "id": "pump", "label": { "en": "Pump" } },
+      { "id": "sprinkler", "label": { "en": "Sprinkler" } },
+      { "id": "watervalve", "label": { "en": "Water Valve" } },
+      { "id": "tv", "label": { "en": "TV" } },
+      { "id": "amplifier", "label": { "en": "Amplifier" } },
+      { "id": "speaker", "label": { "en": "Speaker" } },
+      { "id": "mediaplayer", "label": { "en": "Media Player" } },
+      { "id": "vacuumcleaner", "label": { "en": "Vacuum Cleaner" } },
+      { "id": "lawnmower", "label": { "en": "Lawnmower" } },
+      { "id": "siren", "label": { "en": "Siren" } },
+      { "id": "other", "label": { "en": "Other" } }
+    ]
+  }
+]

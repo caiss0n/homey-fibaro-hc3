@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "title": "Fibaro Home Center 3 Settings",
+    "hc3_ip": "HC3 IP Address",
+    "hc3_username": "Username",
+    "hc3_password": "Password",
+    "enable_logging": "Enable Debug Logging",
+    "test_connection": "Test Connection",
+    "save": "Save Settings",
+    "connection_success": "Connection successful!",
+    "connection_failed": "Connection failed",
+    "settings_saved": "Settings saved successfully!",
+    "fill_all_fields": "Please fill in IP address, username and password"
+  },
+  "pairing": {
+    "select_devices": "Select devices to add",
+    "no_devices_found": "No compatible devices found on your HC3. Please check the app settings connection.",
+    "loading": "Loading devices from HC3..."
+  },
+  "errors": {
+    "not_configured": "HC3 connection not configured. Open the app settings to enter the IP address and credentials.",
+    "connection_failed": "Failed to connect to HC3. Please check the IP address and credentials.",
+    "device_control_failed": "Failed to control the device. Please check the HC3 connection.",
+    "device_not_found": "Device not found on HC3."
+  }
+}

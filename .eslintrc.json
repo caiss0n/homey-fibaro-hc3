@@ -1,0 +1,22 @@
+{
+  "extends": "athom/homey-app",
+  "overrides": [
+    {
+      "files": [
+        "test/**/*.js"
+      ],
+      "rules": {
+        "mocha/no-setup-in-describe": "off",
+        "max-classes-per-file": "off"
+      }
+    },
+    {
+      "files": [
+        "scripts/**/*.js"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

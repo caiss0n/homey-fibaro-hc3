@@ -1,0 +1,630 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "org.saiful.fibarohc3",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Fibaro Home Center 3"
+  },
+  "description": {
+    "en": "Integrate your Fibaro Home Center 3 with Homey Pro. Control and monitor Fibaro devices (sensors, switches, dimmers, shutters, locks, thermostats and more) via the local HC3 REST API."
+  },
+  "category": [
+    "tools"
+  ],
+  "brandColor": "#0091D8",
+  "permissions": [],
+  "api": {
+    "getTestConnection": {
+      "method": "GET",
+      "path": "/test-connection"
+    }
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Saiful Alam",
+    "email": "alam903@outlook.com"
+  },
+  "support": "https://github.com/saifulalam/homey-fibaro-hc3/issues",
+  "flow": {
+    "triggers": [
+      {
+        "id": "button_double_tapped",
+        "title": {
+          "en": "Button double tapped"
+        },
+        "tokens": [
+          {
+            "name": "button",
+            "type": "number",
+            "title": {
+              "en": "Button number"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "button_held",
+        "title": {
+          "en": "Button held"
+        },
+        "tokens": [
+          {
+            "name": "button",
+            "type": "number",
+            "title": {
+              "en": "Button number"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "button_pressed",
+        "title": {
+          "en": "Button pressed"
+        },
+        "tokens": [
+          {
+            "name": "button",
+            "type": "number",
+            "title": {
+              "en": "Button number"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      },
+      {
+        "id": "button_released",
+        "title": {
+          "en": "Button released"
+        },
+        "tokens": [
+          {
+            "name": "button",
+            "type": "number",
+            "title": {
+              "en": "Button number"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=button"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "button",
+      "name": {
+        "en": "Button"
+      },
+      "class": "button",
+      "capabilities": [],
+      "images": {
+        "small": "/drivers/button/assets/images/small.png",
+        "large": "/drivers/button/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "contact-sensor",
+      "name": {
+        "en": "Contact Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_contact"
+      ],
+      "images": {
+        "small": "/drivers/contact-sensor/assets/images/small.png",
+        "large": "/drivers/contact-sensor/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "dimmer",
+      "name": {
+        "en": "Dimmer"
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim"
+      ],
+      "images": {
+        "small": "/drivers/dimmer/assets/images/small.png",
+        "large": "/drivers/dimmer/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "garage-door",
+      "name": {
+        "en": "Garage Door"
+      },
+      "class": "garagedoor",
+      "capabilities": [
+        "garagedoor_closed"
+      ],
+      "images": {
+        "small": "/drivers/garage-door/assets/images/small.png",
+        "large": "/drivers/garage-door/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "humidity-sensor",
+      "name": {
+        "en": "Humidity Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_humidity"
+      ],
+      "images": {
+        "small": "/drivers/humidity-sensor/assets/images/small.png",
+        "large": "/drivers/humidity-sensor/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "light-sensor",
+      "name": {
+        "en": "Light Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_luminance"
+      ],
+      "images": {
+        "small": "/drivers/light-sensor/assets/images/small.png",
+        "large": "/drivers/light-sensor/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "lock",
+      "name": {
+        "en": "Lock"
+      },
+      "class": "lock",
+      "capabilities": [
+        "locked"
+      ],
+      "images": {
+        "small": "/drivers/lock/assets/images/small.png",
+        "large": "/drivers/lock/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "motion-sensor",
+      "name": {
+        "en": "Motion Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_motion"
+      ],
+      "images": {
+        "small": "/drivers/motion-sensor/assets/images/small.png",
+        "large": "/drivers/motion-sensor/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "switch",
+      "name": {
+        "en": "Switch"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ],
+      "images": {
+        "small": "/drivers/switch/assets/images/small.png",
+        "large": "/drivers/switch/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "settings": [
+        {
+          "id": "deviceClass",
+          "type": "dropdown",
+          "label": {
+            "en": "Device type"
+          },
+          "hint": {
+            "en": "Choose what this switch controls. This changes how the device appears in Homey (icon and device type); the on/off control stays the same."
+          },
+          "value": "socket",
+          "values": [
+            {
+              "id": "socket",
+              "label": {
+                "en": "Socket / Wall Plug"
+              }
+            },
+            {
+              "id": "light",
+              "label": {
+                "en": "Light"
+              }
+            },
+            {
+              "id": "relay",
+              "label": {
+                "en": "Relay"
+              }
+            },
+            {
+              "id": "fan",
+              "label": {
+                "en": "Fan"
+              }
+            },
+            {
+              "id": "heater",
+              "label": {
+                "en": "Heater"
+              }
+            },
+            {
+              "id": "kettle",
+              "label": {
+                "en": "Kettle"
+              }
+            },
+            {
+              "id": "coffeemachine",
+              "label": {
+                "en": "Coffee Machine"
+              }
+            },
+            {
+              "id": "airpurifier",
+              "label": {
+                "en": "Air Purifier"
+              }
+            },
+            {
+              "id": "humidifier",
+              "label": {
+                "en": "Humidifier"
+              }
+            },
+            {
+              "id": "pump",
+              "label": {
+                "en": "Pump"
+              }
+            },
+            {
+              "id": "sprinkler",
+              "label": {
+                "en": "Sprinkler"
+              }
+            },
+            {
+              "id": "watervalve",
+              "label": {
+                "en": "Water Valve"
+              }
+            },
+            {
+              "id": "tv",
+              "label": {
+                "en": "TV"
+              }
+            },
+            {
+              "id": "amplifier",
+              "label": {
+                "en": "Amplifier"
+              }
+            },
+            {
+              "id": "speaker",
+              "label": {
+                "en": "Speaker"
+              }
+            },
+            {
+              "id": "mediaplayer",
+              "label": {
+                "en": "Media Player"
+              }
+            },
+            {
+              "id": "vacuumcleaner",
+              "label": {
+                "en": "Vacuum Cleaner"
+              }
+            },
+            {
+              "id": "lawnmower",
+              "label": {
+                "en": "Lawnmower"
+              }
+            },
+            {
+              "id": "siren",
+              "label": {
+                "en": "Siren"
+              }
+            },
+            {
+              "id": "other",
+              "label": {
+                "en": "Other"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "temperature-sensor",
+      "name": {
+        "en": "Temperature Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature"
+      ],
+      "images": {
+        "small": "/drivers/temperature-sensor/assets/images/small.png",
+        "large": "/drivers/temperature-sensor/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "id": "window-covering",
+      "name": {
+        "en": "Window Covering"
+      },
+      "class": "windowcoverings",
+      "capabilities": [
+        "windowcoverings_state",
+        "windowcoverings_set"
+      ],
+      "images": {
+        "small": "/drivers/window-covering/assets/images/small.png",
+        "large": "/drivers/window-covering/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "connectivity": [
+        "lan"
+      ]
+    }
+  ]
+}

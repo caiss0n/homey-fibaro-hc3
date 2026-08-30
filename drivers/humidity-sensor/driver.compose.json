@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    "local"
+  ],
+  "id": "humidity-sensor",
+  "name": {
+    "en": "Humidity Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_humidity"
+  ],
+  "images": {
+    "small": "/drivers/humidity-sensor/assets/images/small.png",
+    "large": "/drivers/humidity-sensor/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "connectivity": [
+    "lan"
+  ]
+}

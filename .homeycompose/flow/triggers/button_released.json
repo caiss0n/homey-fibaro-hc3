@@ -1,0 +1,22 @@
+{
+  "id": "button_released",
+  "title": {
+    "en": "Button released"
+  },
+  "tokens": [
+    {
+      "name": "button",
+      "type": "number",
+      "title": {
+        "en": "Button number"
+      }
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=button"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "button_double_tapped",
+  "title": {
+    "en": "Button double tapped"
+  },
+  "tokens": [
+    {
+      "name": "button",
+      "type": "number",
+      "title": {
+        "en": "Button number"
+      }
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=button"
+    }
+  ]
+}
