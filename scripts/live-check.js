@@ -175,7 +175,8 @@ async function main() {
   }
 
   // 3. Pairing flow proof: list candidates for each implemented driver
-  const implementedDrivers = ['temperature-sensor', 'motion-sensor', 'switch', 'dimmer', 'contact-sensor', 'window-covering', 'garage-door', 'lock', 'button', 'light-sensor', 'humidity-sensor'];
+  const implementedDrivers = ['temperature-sensor', 'motion-sensor', 'switch', 'dimmer', 'contact-sensor', 'binary-sensor',
+    'window-covering', 'garage-door', 'lock', 'button', 'light-sensor', 'humidity-sensor'];
   for (const driverId of implementedDrivers) {
     const candidates = await app.getDevicesForDriver(driverId);
     console.log(`\n✓ Pairing candidates for '${driverId}' (${candidates.length}):`);

@@ -1,6 +1,6 @@
 {
   "id": "org.saiful.fibarohc3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "runtime": "nodejs",
@@ -33,5 +33,5 @@
     "name": "Saiful Alam",
     "email": "alam903@outlook.com"
   },
-  "support": "https://github.com/saifulalam/homey-fibaro-hc3/issues"
+  "support": "https://github.com/caiss0n/homey-fibaro-hc3/issues"
 }

@@ -66,6 +66,9 @@ function hc3Fixture() {
     {
       id: 237, name: 'Garage Temperature', type: 'com.fibaro.temperatureSensor', parentId: 224, properties: {},
     },
+    {
+      id: 238, name: 'Garage Laser Beam', type: 'com.fibaro.binarySensor', parentId: 224, properties: {},
+    },
     // Group with two temperature-only children (primary already has the capability)
     {
       id: 400, name: '400', type: 'com.fibaro.zigbeeDevice', parentId: 8,
@@ -172,7 +175,9 @@ describe('sibling merging — pairing lists', () => {
     const app = createAppWithFixture();
 
     const contactList = await app.getDevicesForDriver('contact-sensor');
-    assert.strictEqual(contactList.length, 1);
+    // Length 2: the merged Patio door + the group-224 binary sensor (238),
+    // which contact-sensor also lists via DRIVER_TYPE_ALIASES
+    assert.strictEqual(contactList.length, 2);
     assert.deepStrictEqual(contactList[0], {
       name: 'Patio door',
       data: {
@@ -218,6 +223,12 @@ describe('sibling merging — pairing lists', () => {
     assert.ok(garageSwitch && laserSwitch, 'both switches pairable');
     assert.strictEqual(garageSwitch.data.hc3Siblings, undefined);
     assert.strictEqual(laserSwitch.data.hc3Siblings, undefined);
+
+    // Binary sensor children are never absorbed into the ambiguous group either
+    const binaryList = await app.getDevicesForDriver('binary-sensor');
+    const laserBeam = binaryList.find((device) => device.data.hc3DeviceId === '238');
+    assert.ok(laserBeam, 'binary sensor pairable');
+    assert.strictEqual(laserBeam.data.hc3Siblings, undefined);
   });
 });
 

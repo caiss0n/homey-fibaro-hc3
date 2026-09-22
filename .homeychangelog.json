@@ -1,4 +1,7 @@
 {
+  "1.0.1": {
+    "en": "Added Binary Sensor driver (com.fibaro.binarySensor) with new alarm_generic capability."
+  },
   "1.0.0": {
     "en": "First version!"
   }

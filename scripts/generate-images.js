@@ -29,6 +29,8 @@ const IMAGES = [
   { file: 'drivers/dimmer/assets/images/large.png', width: 500, height: 500 },
   { file: 'drivers/contact-sensor/assets/images/small.png', width: 75, height: 75 },
   { file: 'drivers/contact-sensor/assets/images/large.png', width: 500, height: 500 },
+  { file: 'drivers/binary-sensor/assets/images/small.png', width: 75, height: 75 },
+  { file: 'drivers/binary-sensor/assets/images/large.png', width: 500, height: 500 },
   { file: 'drivers/window-covering/assets/images/small.png', width: 75, height: 75 },
   { file: 'drivers/window-covering/assets/images/large.png', width: 500, height: 500 },
   { file: 'drivers/garage-door/assets/images/small.png', width: 75, height: 75 },

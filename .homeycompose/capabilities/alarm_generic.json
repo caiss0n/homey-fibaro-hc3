@@ -1,0 +1,13 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Generic alarm"
+  },
+  "desc": {
+    "en": "Triggered when the binary sensor is active."
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

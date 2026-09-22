@@ -104,6 +104,9 @@ describe('mapDeviceToDriver', () => {
     [{ type: 'com.fibaro.doorWindowSensor' }, 'contact-sensor'],
     [{ type: 'com.fibaro.windowSensor' }, 'contact-sensor'],
 
+    // 11b. Binary sensors (generic on/off sensors, e.g. Smart Implant inputs)
+    [{ type: 'com.fibaro.binarySensor' }, 'binary-sensor'],
+
     // 12./13. Motion & presence
     [{ type: 'com.fibaro.motionSensor' }, 'motion-sensor'],
     [{ type: 'com.fibaro.multilevelSensor', properties: { deviceRole: 'MotionSensor' } }, 'motion-sensor'],

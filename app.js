@@ -41,11 +41,19 @@ const LIGHTING_CONTROL_TYPES = [2, 5, 7, 23]; // LIGHTING, BEDSIDE_LAMP, WALL_LA
 // an alarm — such a child becomes the primary of its HC3 device group.
 const PRIMARY_CAPABLE_DRIVERS = [
   'switch', 'dimmer', 'window-covering', 'garage-door', 'lock',
-  'motion-sensor', 'contact-sensor', 'smoke-sensor', 'leak-sensor',
+  'motion-sensor', 'contact-sensor', 'binary-sensor', 'smoke-sensor', 'leak-sensor',
 ];
 
 // Ranking for all-sensor groups (no primary-capable child): temperature first
 const SENSOR_PRIMARY_RANK = ['temperature-sensor', 'humidity-sensor', 'light-sensor'];
+
+// HC3 device types that may pair through more than one driver: the key driver
+// also lists devices whose mapped driver is one of the given aliases. Lets the
+// user choose per device, e.g. a binary sensor can pair as a contact sensor
+// (standard alarm_contact flows) or as a binary sensor (alarm_generic).
+const DRIVER_TYPE_ALIASES = {
+  'contact-sensor': ['binary-sensor'],
+};
 
 // Base capabilities per driver — MUST match drivers/<id>/driver.compose.json
 // (sync enforced by test/sibling-merge.test.js)
@@ -53,6 +61,7 @@ const DRIVER_BASE_CAPABILITIES = {
   'temperature-sensor': ['measure_temperature'],
   'motion-sensor': ['alarm_motion'],
   'contact-sensor': ['alarm_contact'],
+  'binary-sensor': ['alarm_generic'],
   'humidity-sensor': ['measure_humidity'],
   'light-sensor': ['measure_luminance'],
   switch: ['onoff'],
@@ -469,6 +478,10 @@ class FibaroHc3App extends Homey.App {
       return 'contact-sensor';
     }
 
+    // 11b. Binary sensors (generic on/off sensors, e.g. Smart Implant inputs).
+    // value=true means the sensor is active/triggered.
+    if (type === 'com.fibaro.binarySensor') return 'binary-sensor';
+
     // 12. Motion sensors
     if (type === 'com.fibaro.motionSensor'
       || (type === 'com.fibaro.multilevelSensor' && deviceRole === 'MotionSensor')) {
@@ -656,10 +669,13 @@ class FibaroHc3App extends Homey.App {
 
     const { merged, absorbedIds } = this.buildMergedDevices(allDevices);
 
+    const aliases = DRIVER_TYPE_ALIASES[driverId] || [];
+
     return allDevices
       .filter((device) => {
         if (absorbedIds.has(String(device.id))) return false; // merged into a sibling's device
-        return this.mapDeviceToDriver(device) === driverId;
+        const mappedDriverId = this.mapDeviceToDriver(device);
+        return mappedDriverId === driverId || aliases.includes(mappedDriverId);
       })
       .map((device) => {
         const result = {

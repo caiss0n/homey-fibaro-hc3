@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    "local"
+  ],
+  "id": "binary-sensor",
+  "name": {
+    "en": "Binary Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_generic"
+  ],
+  "images": {
+    "small": "/drivers/binary-sensor/assets/images/small.png",
+    "large": "/drivers/binary-sensor/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "connectivity": [
+    "lan"
+  ]
+}

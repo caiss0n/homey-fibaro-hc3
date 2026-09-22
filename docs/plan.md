@@ -223,6 +223,7 @@ This table maps HC3 device types to Homey drivers. Used by `mapDeviceToDriver()`
 | HC3 Device Type | Homey Driver | Key Properties | Phase |
 |-----------------|--------------|----------------|-------|
 | `com.fibaro.contactSensor` | contact-sensor | value (boolean), open | 4 |
+| `com.fibaro.binarySensor` | binary-sensor (or contact-sensor, chosen at pairing) | value (boolean) → alarm_generic / alarm_contact | 4b |
 | `com.fibaro.presenceSensor` | presence-sensor | value (boolean) | TBD |
 | `com.fibaro.leakSensor` | leak-sensor | value (boolean), detected | TBD |
 
@@ -456,6 +457,25 @@ Tasks:
 - [x] Unit tests: test/contact-sensor.test.js (9 tests) + 3 new mapping cases in app.test.js
 
 Live-verified pairing candidates (10): TestUtils, Upstair/Masterbed Sliding Door, Main Door, Garage Home Door, Side Gate, 48.0 Door Sensor, Patio door, Nabeeha Window, Common Bath Window.
+
+---
+
+### Phase 4b: Binary Sensor Driver
+**Goal:** Generic on/off sensors (e.g. Smart Implant binary inputs, laser beams)
+
+**Status: ✅ Complete** (2026-09-20) — 223/223 unit tests pass, ESLint clean, debug-level validation passes. Live HC3 has 2 binary sensors (ids 238, 239 — children of the Garage laser Smart Implant group 224).
+
+Tasks:
+- [x] Create `drivers/binary-sensor/` folder structure
+- [x] Add driver definition via `drivers/binary-sensor/driver.compose.json`:
+  - Class: sensor
+  - Capabilities: alarm_generic (new custom capability — no built-in capability fits a generic boolean sensor; boolean, getable, not setable, uiComponent `sensor` since `alarm` is not allowed for custom capabilities), measure_battery added dynamically when batteryLevel is reported
+  - Pair template: list_devices → add_devices
+- [x] Implement `driver.js`: filter by type com.fibaro.binarySensor
+- [x] Implement `device.js`: map value property → alarm_generic. Polarity: value=true → sensor ACTIVE → alarm_generic=true; value=false → inactive. Tolerates 'true'/'false' strings
+- [x] Sibling merging: binary-sensor added to PRIMARY_CAPABLE_DRIVERS (alarm children are never absorbed, plan v1.2 rule); group 224 binary sensors pair as standalone devices
+- [x] Dual pairing (2026-09-20): DRIVER_TYPE_ALIASES lets binary sensors also appear in the Contact Sensor pairing list — the user picks the driver per device. Polarity matches (value=true → alarm on), and state routing is by HC3 id (findPairedDevices), so a binary sensor paired via either driver updates correctly
+- [x] Unit tests: test/binary-sensor.test.js (12 tests) + mapping case in app.test.js + ambiguous-group assertion in sibling-merge.test.js
 
 ---
 
